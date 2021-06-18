@@ -7,6 +7,7 @@ class CardChecker {
     checkForCardNumbers(checked) {
         let result = '';
         for (let r in this._numberStore) {
+            console.log(this._numberStore[r]);
             let value = this._numberStore[r];
             if(value.test(checked)) result = r;
         }
