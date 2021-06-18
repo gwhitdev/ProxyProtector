@@ -9,7 +9,6 @@ class ServerTestCheck {
         //console.log(msgArr);
         const reqType = msgArr[0].split('/');
         let get = reqType[0].trim();
-        console.log(get);
         if(get === 'GET') return true;
         return false;
     }

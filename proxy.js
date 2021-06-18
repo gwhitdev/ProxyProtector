@@ -26,14 +26,15 @@ const server = net.createServer(function (socket) {
             const messageToCheck = cardChecker.createStringToCheck();
             const checked = cardChecker.checkForCardNumbers(messageToCheck);
             console.log('checked:',checked);
+            if(checked !== 'Clean') {
+                const newMsg = JSON.stringify({"message":"Message blocked"});
+                socket.write(newMsg);
+                return;
+            }
         }
         
         
-        if(!isServerTest && checked !== 'Clean') {
-            const newMsg = JSON.stringify({"message":"Message blocked"});
-            socket.write(newMsg);
-            return;
-        }
+        
 
         const serviceSocket = new net.Socket();
             serviceSocket.connect(parseInt(REMOTE_PORT), REMOTE_ADD, function() {
