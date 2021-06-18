@@ -1,0 +1,3 @@
+This is an experiment at creating a HTTP proxy in NodeJS, writing some classes to check for credit card numbers via a regex and practice at writing a basic client and server.
+Test client: https://github.com/gwhitdev/HttpTestClient
+Test server: https://github.com/gwhitdev/HttpTestServer
