@@ -33,9 +33,6 @@ const server = net.createServer(function (socket) {
             }
         }
         
-        
-        
-
         const serviceSocket = new net.Socket();
             serviceSocket.connect(parseInt(REMOTE_PORT), REMOTE_ADD, function() {
                 console.log(' >> From proxy to remote '); //msg.toString()
