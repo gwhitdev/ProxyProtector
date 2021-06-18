@@ -1,5 +1,5 @@
 const net = require('net');
-const CardChecker = require('./cardChecker.js');
+const CardChecker = require('./modules/cardChecker.js');
 
 const LOCAL_PORT = 6512;
 const REMOTE_PORT = 10000;
