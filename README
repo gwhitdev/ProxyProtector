@@ -3,7 +3,7 @@ Test client: https://github.com/gwhitdev/HttpTestClient
 Test server: https://github.com/gwhitdev/HttpTestServer
 
 The test client will run on port 9000, the proxy will run on port 5612 and the server will run on 10000.
-When the client is running make a HTTP request to: http://localhost:9000/message?content={MESSAGE} where MESSAGE is your message. It may not may not include a Visa or Mastercard credit card number.
+When the client is running make a HTTP request to: http://localhost:9000/message?content={MESSAGE} where MESSAGE is your message. It may or may not include a Visa or Mastercard credit card number.
 
 Sample card numbers:
 Visa: 4111111111111111
