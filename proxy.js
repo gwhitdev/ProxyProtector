@@ -1,5 +1,6 @@
 const net = require('net');
 const CardChecker = require('./modules/cardChecker.js');
+const ServerTestCheck = require('./modules/serverCheckTest');
 
 const LOCAL_PORT = 6512;
 const REMOTE_PORT = 10000;
@@ -13,17 +14,22 @@ const cardRegexes = {
 const server = net.createServer(function (socket) {
     socket.on('data', function (msg) {
         console.log(' START INTERCEPTING ');
-        console.log(' >> From CLIENT TO PROXY '); //msg.toString()
+        console.log(' >> From CLIENT TO PROXY ',msg.toString()); //msg.toString()
         console.log();
         
-        const cardChecker = new CardChecker(msg,cardRegexes);
-
-        const messageToCheck = cardChecker.createStringToCheck();
-        const checked = cardChecker.checkForCardNumbers(messageToCheck);
-
-        console.log('checked:',checked);
+        const serverTestCheck = new ServerTestCheck(msg);
+        const isServerTest = serverTestCheck.checkForServerTest();
+        console.log('is server test?',isServerTest);
         
-        if(checked !== 'Clean') {
+        if(!isServerTest) {
+            const cardChecker = new CardChecker(msg,cardRegexes);
+            const messageToCheck = cardChecker.createStringToCheck();
+            const checked = cardChecker.checkForCardNumbers(messageToCheck);
+            console.log('checked:',checked);
+        }
+        
+        
+        if(!isServerTest && checked !== 'Clean') {
             const newMsg = JSON.stringify({"message":"Message blocked"});
             socket.write(newMsg);
             return;
